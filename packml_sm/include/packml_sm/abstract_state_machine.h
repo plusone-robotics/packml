@@ -38,6 +38,8 @@ public:
   EventHandler<AbstractStateMachine, StateChangedEventArgs> stateChangedEvent; /** Triggered during a state changed
                                                                                   event. */
 
+  EventHandler<AbstractStateMachine, EventArgs> incrementEvent; /** Triggered during an increment stat event. */
+
   /**
    * @brief Constructor for AbstractStateMachine.
    *
@@ -398,6 +400,12 @@ protected:
    * @param value The name of the new value.
    */
   void invokeStateChangedEvent(const std::string& name, StatesEnum value);
+
+  /**
+   * @brief Call to invoke a stat incremented event.
+   *
+   */
+  void invokeIncrementEvent();
 
   /**
    * @brief Override to call implementations version of start command.

@@ -54,6 +54,7 @@ PackmlRos::PackmlRos(ros::NodeHandle nh, ros::NodeHandle pn, std::shared_ptr<pac
   }
 
   sm_->stateChangedEvent.bind_member_func(this, &PackmlRos::handleStateChanged);
+  sm_->incrementEvent.bind_member_func(this, &PackmlRos::handleIncrementEvent);
   sm_->activate();
 
 }
@@ -63,6 +64,7 @@ PackmlRos::~PackmlRos()
   if (sm_ != nullptr)
   {
     sm_->stateChangedEvent.unbind_member_func(this, &PackmlRos::handleStateChanged);
+    sm_->incrementEvent.unbind_member_func(this, &PackmlRos::handleIncrementEvent);
   }
 }
 
@@ -171,6 +173,11 @@ void PackmlRos::handleStateChanged(packml_sm::AbstractStateMachine& state_machin
   }
 
   status_pub_.publish(status_msg_);
+  publishStats();
+}
+
+void PackmlRos::handleIncrementEvent(packml_sm::AbstractStateMachine& state_machine, const EventArgs& args)
+{
   publishStats();
 }
 

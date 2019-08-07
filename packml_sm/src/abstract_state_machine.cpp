@@ -364,24 +364,28 @@ void AbstractStateMachine::incrementMapStatItem(std::map<int16_t, PackmlStatsIte
 
 void AbstractStateMachine::incrementErrorStatItem(int16_t id, int32_t count, double duration)
 {
+  invokeIncrementEvent();
   std::lock_guard<std::recursive_mutex> lock(stat_mutex_);
   incrementMapStatItem(itemized_error_map_, id, count, duration);
 }
 
 void AbstractStateMachine::incrementQualityStatItem(int16_t id, int32_t count, double duration)
 {
+  invokeIncrementEvent();
   std::lock_guard<std::recursive_mutex> lock(stat_mutex_);
   incrementMapStatItem(itemized_quality_map_, id, count, duration);
 }
 
 void AbstractStateMachine::incrementSuccessCount()
 {
+  invokeIncrementEvent();
   std::lock_guard<std::recursive_mutex> lock(stat_mutex_);
   success_count_++;
 }
 
 void AbstractStateMachine::incrementFailureCount()
 {
+  invokeIncrementEvent();
   std::lock_guard<std::recursive_mutex> lock(stat_mutex_);
   failure_count_++;
 }
@@ -396,6 +400,11 @@ void AbstractStateMachine::invokeStateChangedEvent(const std::string& name, Stat
 {
   updateClock(value);
   stateChangedEvent.invoke(*this, { name, value });
+}
+
+void AbstractStateMachine::invokeIncrementEvent()
+{
+  incrementEvent.invoke(*this, {});
 }
 
 void AbstractStateMachine::updateClock(StatesEnum new_state)
