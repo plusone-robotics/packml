@@ -332,14 +332,16 @@ public:
   /**
    * @brief Call to increment the successful operation count.
    *
+   * @param[in] step Increment step
    */
-  void incrementSuccessCount();
+  void incrementSuccessCount(double step);
 
   /**
    * @brief Call to increment the failed operation count.
    *
+   * @param[in] step Increment step
    */
-  void incrementFailureCount();
+  void incrementFailureCount(double step);
 
   /**
    * @brief Sets the ideal cycle time in operations per second.

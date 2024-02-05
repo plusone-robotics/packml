@@ -478,18 +478,18 @@ void AbstractStateMachine::incrementQualityStatItem(int16_t id, float step, floa
   incrementMapStatItem(inremental_itemized_quality_map_, id, step, duration);
 }
 
-void AbstractStateMachine::incrementSuccessCount()
+void AbstractStateMachine::incrementSuccessCount(double step)
 {
   std::lock_guard<std::recursive_mutex> lock(stat_mutex_);
-  success_count_++;
-  incremental_success_count_++;
+  success_count_ += (step == 0.0 ? 1 : step);
+  incremental_success_count_ += (step == 0.0 ? 1 : step);
 }
 
-void AbstractStateMachine::incrementFailureCount()
+void AbstractStateMachine::incrementFailureCount(double step)
 {
   std::lock_guard<std::recursive_mutex> lock(stat_mutex_);
-  failure_count_++;
-  incremental_failure_count_++;
+  failure_count_ += (step == 0.0 ? 1 : step);
+  incremental_failure_count_ += (step == 0.0 ? 1 : step);
 }
 
 void AbstractStateMachine::setIdealCycleTime(float ideal_cycle_time)

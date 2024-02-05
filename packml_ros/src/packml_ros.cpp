@@ -448,10 +448,10 @@ bool PackmlRos::incStat(const int& metric, const double& step)
       //do nothing, we don't have a way to increment cycle yet.
       break;
     case static_cast<int32_t>(packml_sm::MetricIDEnum::SUCCESS_INC_ID):
-      sm_->incrementSuccessCount();
+      sm_->incrementSuccessCount(step);
       break;
     case static_cast<int32_t>(packml_sm::MetricIDEnum::FAILURE_INC_ID):
-      sm_->incrementFailureCount();
+      sm_->incrementFailureCount(step);
       break;
     default:
       if(metric >= static_cast<int32_t>(packml_sm::MetricIDEnum::MIN_QUALITY_ID)

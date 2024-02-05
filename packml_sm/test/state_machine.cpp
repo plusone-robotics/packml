@@ -461,13 +461,14 @@ TEST(Packml_CC, getCurrentStatTransaction_counts)
 
   auto num_successes = 90;
   auto num_failures = 10;
+  double step = 1;
   for (auto i = 0; i < num_successes; ++i)
   {
-    sm->incrementSuccessCount();
+    sm->incrementSuccessCount(step);
   }
   for (auto i = 0; i < num_failures; ++i)
   {
-    sm->incrementFailureCount();
+    sm->incrementFailureCount(step);
   }
 
   sm->getCurrentIncrementalStatSnapshot(snapshot_out);
@@ -486,7 +487,7 @@ TEST(Packml_CC, getCurrentStatTransaction_counts)
   // Next transaction
   for (auto i = 0; i < num_successes; ++i)
   {
-    sm->incrementSuccessCount();
+    sm->incrementSuccessCount(step);
   }
   sm->getCurrentIncrementalStatSnapshot(snapshot_out);
   ASSERT_EQ(snapshot_out.success_count, 90);
