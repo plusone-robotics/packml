@@ -481,14 +481,16 @@ void AbstractStateMachine::incrementQualityStatItem(int16_t id, float step, floa
 void AbstractStateMachine::incrementSuccessCount(double step)
 {
   std::lock_guard<std::recursive_mutex> lock(stat_mutex_);
-  success_count_ += (step == 0.0 ? 1 : step);
+  success_count_ +=
+      ((step == 0.0 || std::isnan(step) || std::isinf(step)) ? 1 : step);
   incremental_success_count_ += (step == 0.0 ? 1 : step);
 }
 
 void AbstractStateMachine::incrementFailureCount(double step)
 {
   std::lock_guard<std::recursive_mutex> lock(stat_mutex_);
-  failure_count_ += (step == 0.0 ? 1 : step);
+  failure_count_ +=
+      ((step == 0.0 || std::isnan(step) || std::isinf(step)) ? 1 : step);
   incremental_failure_count_ += (step == 0.0 ? 1 : step);
 }
 

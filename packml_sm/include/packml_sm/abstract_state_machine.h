@@ -21,10 +21,11 @@
 #include "packml_sm/packml_stats_itemized.h"
 #include "common.h"
 
+#include <chrono>
+#include <cmath>
+#include <functional>
 #include <map>
 #include <mutex>
-#include <chrono>
-#include <functional>
 
 namespace packml_sm
 {
