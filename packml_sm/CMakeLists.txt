@@ -68,6 +68,6 @@ if(CATKIN_ENABLE_TESTING)
       )
 
   catkin_add_gtest(${PROJECT_NAME}_utest ${UTEST_SRC_FILES})
-  target_compile_options(${PROJECT_NAME}_utest PUBLIC -std=c++11)
+  target_compile_options(${PROJECT_NAME}_utest PUBLIC -std=c++14)
   target_link_libraries(${PROJECT_NAME}_utest ${PROJECT_NAME})
 endif()

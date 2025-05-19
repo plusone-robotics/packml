@@ -35,11 +35,11 @@ include_directories(${${PROJECT_NAME}_INCLUDE_DIRECTORIES} ${catkin_INCLUDE_DIRS
 
 add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS})
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
-target_compile_options(${PROJECT_NAME} PUBLIC -std=c++11)
+target_compile_options(${PROJECT_NAME} PUBLIC -std=c++14)
 
 add_executable(${PROJECT_NAME}_node src/${PROJECT_NAME}_node.cpp)
 target_link_libraries(${PROJECT_NAME}_node ${PROJECT_NAME} ${catkin_LIBRARIES})
-target_compile_options(${PROJECT_NAME}_node PUBLIC -std=c++11)
+target_compile_options(${PROJECT_NAME}_node PUBLIC -std=c++14)
 
 install(TARGETS ${PROJECT_NAME}_node ${PROJECT_NAME}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
@@ -60,6 +60,6 @@ if(CATKIN_ENABLE_TESTING)
   set(UTEST_SRC_FILES test/test_stacklight.cpp)
 
   catkin_add_gtest(${PROJECT_NAME}_utest ${UTEST_SRC_FILES})
-  target_compile_options(${PROJECT_NAME}_utest PUBLIC -std=c++11)
+  target_compile_options(${PROJECT_NAME}_utest PUBLIC -std=c++14)
   target_link_libraries(${PROJECT_NAME}_utest ${PROJECT_NAME})
 endif()
