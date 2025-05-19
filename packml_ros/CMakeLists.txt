@@ -17,18 +17,18 @@ catkin_package(
 include_directories(include ${catkin_INCLUDE_DIRS})
 add_library(${PROJECT_NAME} src/packml_ros.cpp)
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
-target_compile_options(${PROJECT_NAME} PUBLIC -std=c++11)
+target_compile_options(${PROJECT_NAME} PUBLIC -std=c++14)
 
 add_executable(packml_ros_node src/packml_ros_node.cpp)
 target_link_libraries(packml_ros_node ${PROJECT_NAME} ${catkin_LIBRARIES})
-target_compile_options(packml_ros_node PUBLIC -std=c++11)
+target_compile_options(packml_ros_node PUBLIC -std=c++14)
 
 if(CATKIN_ENABLE_TESTING)
   find_package(rostest)
   set(UTEST_SRC_FILES test/utest.cpp)
 
   catkin_add_gtest(${PROJECT_NAME}_utest ${UTEST_SRC_FILES})
-  target_compile_options(${PROJECT_NAME}_utest PUBLIC -std=c++11)
+  target_compile_options(${PROJECT_NAME}_utest PUBLIC -std=c++14)
   target_link_libraries(${PROJECT_NAME}_utest ${PROJECT_NAME} ${catkin_LIBRARIES})
 endif()
 
