@@ -23,7 +23,7 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 add_library(${PROJECT_NAME} ${packml_sm_SRCS})
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 target_compile_definitions(${PROJECT_NAME} PUBLIC -DBOOST_MPL_CFG_NO_PREPROCESSED_HEADERS PUBLIC -DBOOST_MPL_LIMIT_VECTOR_SIZE=60 PUBLIC -DBOOST_MPL_LIMIT_MAP_SIZE=60 PUBLIC -DFUSION_MAX_VECTOR_SIZE=50)
-target_compile_options(${PROJECT_NAME} PUBLIC -std=c++11)
+target_compile_options(${PROJECT_NAME} PUBLIC -std=c++14)
 
 #############
 ## Install ##
